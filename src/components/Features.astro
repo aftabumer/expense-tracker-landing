@@ -1,0 +1,111 @@
+---
+const features = [
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`,
+    title: 'Know Exactly Where Your Money Goes',
+    description: 'Every expense logged, categorized, and searchable in seconds. Spot the subscriptions and habits quietly draining your budget — and cut them before they compound.',
+    color: 'emerald',
+    badge: 'Most Used',
+    badgeColor: 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400',
+    highlight: true,
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>`,
+    title: 'Stop Overspending Before It Starts',
+    description: 'Set monthly limits per category. Live progress bars and smart alerts fire before you breach a budget — so you can adjust while there\'s still time to course-correct.',
+    color: 'blue',
+    badge: null,
+    badgeColor: '',
+    highlight: false,
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>`,
+    title: 'Get Debt-Free on a Precise Schedule',
+    description: 'Model avalanche vs. snowball strategies side by side. See the exact date each loan disappears — and the exact interest you\'ll save by paying smarter, not harder.',
+    color: 'purple',
+    badge: 'Fan Favorite',
+    badgeColor: 'bg-purple-500/15 border-purple-500/30 text-purple-400',
+    highlight: false,
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>`,
+    title: 'See If You\'re Actually Getting Wealthier',
+    description: 'Net worth tracked daily — assets minus liabilities — with a full growth chart. Stop guessing whether you\'re building wealth. See the real trend, updated live.',
+    color: 'emerald',
+    badge: null,
+    badgeColor: '',
+    highlight: false,
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>`,
+    title: 'Know Your True Financial Position',
+    description: 'Track gold, real estate, stocks, and cash in one unified view. Live market data keeps your numbers accurate — your net worth stays honest without any manual work.',
+    color: 'orange',
+    badge: null,
+    badgeColor: '',
+    highlight: false,
+  },
+  {
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>`,
+    title: 'Calculate Zakat in Minutes, Not Hours',
+    description: 'Automatically identifies zakatable assets, deducts eligible liabilities, checks the current nisab, and outputs your exact obligation. Generate a formatted PDF in one click.',
+    color: 'teal',
+    badge: 'Unique Feature',
+    badgeColor: 'bg-teal-500/15 border-teal-500/30 text-teal-400',
+    highlight: true,
+  },
+];
+
+const colorMap: Record<string, string> = {
+  emerald: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
+  blue: 'text-blue-400 bg-blue-500/10 border-blue-500/20',
+  purple: 'text-purple-400 bg-purple-500/10 border-purple-500/20',
+  orange: 'text-orange-400 bg-orange-500/10 border-orange-500/20',
+  teal: 'text-teal-400 bg-teal-500/10 border-teal-500/20',
+};
+---
+
+<section id="features" class="py-16 lg:py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="text-center mb-10 reveal">
+      <span class="inline-block text-emerald-400 text-sm font-semibold uppercase tracking-wider mb-4">Everything You Need</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-5">
+        6 powerful tools.<br />One clean dashboard.
+      </h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+        Every feature is built to give you real clarity — not just charts and numbers, but the insight to make better financial decisions every single day.
+      </p>
+    </div>
+
+    <!-- Feature grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {features.map((feature, i) => (
+        <div
+          class={`reveal reveal-delay-${(i % 3) + 1} group relative rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-black/30 ${
+            feature.highlight
+              ? 'bg-slate-900 border-2 border-emerald-500/30 shadow-lg shadow-emerald-500/5'
+              : 'bg-slate-900/60 hover:bg-slate-900/90 border border-slate-800 hover:border-slate-600'
+          }`}
+        >
+          <!-- Badge -->
+          {feature.badge && (
+            <span class={`absolute top-4 right-4 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border ${feature.badgeColor}`}>
+              {feature.badge}
+            </span>
+          )}
+
+          <div class={`inline-flex items-center justify-center w-12 h-12 rounded-xl border ${colorMap[feature.color]} mb-5 transition-transform duration-300 group-hover:scale-110`}>
+            <Fragment set:html={feature.icon} />
+          </div>
+          <h3 class="text-white font-bold text-base mb-3 group-hover:text-emerald-300 transition-colors leading-snug">
+            {feature.title}
+          </h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            {feature.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

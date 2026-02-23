@@ -1,0 +1,223 @@
+---
+const APP_URL = 'https://expense-tracker-dashboard-omega.vercel.app/auth';
+---
+
+<section class="relative min-h-screen flex items-center pt-28 overflow-hidden">
+  <!-- Background effects -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/4 left-1/2 w-[800px] h-[800px] bg-emerald-500/5 rounded-full blur-3xl animate-[orbDrift_10s_ease-in-out_infinite]"></div>
+    <div class="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-emerald-600/8 rounded-full blur-3xl animate-[orbDrift2_13s_ease-in-out_infinite]"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-violet-600/6 rounded-full blur-3xl animate-[orbDrift2_9s_ease-in-out_infinite_reverse]"></div>
+    <div
+      class="absolute inset-0 opacity-[0.025]"
+      style="background-image: linear-gradient(#10b981 1px, transparent 1px), linear-gradient(90deg, #10b981 1px, transparent 1px); background-size: 60px 60px;"
+    ></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+
+      <!-- Left: Text content -->
+      <div class="text-center lg:text-left">
+
+        <!-- Badge -->
+        <div class="hero-up hero-d1 inline-flex items-center gap-2 badge-pulse border border-emerald-500/20 rounded-full px-4 py-1.5 text-emerald-400 text-sm font-medium mb-5 sm:mb-8">
+          <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse flex-shrink-0"></span>
+          Now in Beta — Pro features free for early users
+        </div>
+
+        <!-- Headline -->
+        <h1 class="hero-up hero-d2 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight mb-4 sm:mb-6">
+          Stop Guessing.
+          <span class="text-gradient-shimmer block mt-1">
+            Know Exactly Where Your Money Goes.
+          </span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="hero-up hero-d3 text-base sm:text-lg lg:text-xl text-slate-400 leading-relaxed mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0">
+          Expense Tracker is the all-in-one finance dashboard for tracking expenses, crushing debt, building net worth, and calculating Zakat — free forever, works offline, no credit card needed.
+        </p>
+
+        <!-- CTAs -->
+        <div class="hero-up hero-d4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <a
+            href={APP_URL}
+            class="group bg-emerald-500 hover:bg-emerald-400 text-white font-semibold px-8 py-4 rounded-xl text-base transition-all shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5 flex items-center justify-center gap-2"
+          >
+            Start Free — No Card Needed
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <a
+            href="#features"
+            class="bg-slate-800/80 hover:bg-slate-800 text-slate-200 font-semibold px-8 py-4 rounded-xl text-base transition-all border border-slate-700 hover:border-slate-600 flex items-center justify-center gap-2 backdrop-blur-sm"
+          >
+            Explore Features
+          </a>
+        </div>
+
+        <!-- Trust indicators -->
+        <div class="hero-up hero-d5 flex flex-wrap gap-x-5 gap-y-2 justify-center lg:justify-start mt-7">
+          <div class="flex items-center gap-1.5 text-slate-500 text-xs">
+            <svg class="w-3.5 h-3.5 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span>Bank-level encryption</span>
+          </div>
+          <span class="text-slate-800 hidden sm:block">·</span>
+          <div class="flex items-center gap-1.5 text-slate-500 text-xs">
+            <svg class="w-3.5 h-3.5 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+            </svg>
+            <span>No bank sync required</span>
+          </div>
+          <span class="text-slate-800 hidden sm:block">·</span>
+          <div class="flex items-center gap-1.5 text-slate-500 text-xs">
+            <svg class="w-3.5 h-3.5 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>No credit card ever</span>
+          </div>
+        </div>
+
+        <!-- Social proof + vs YNAB price -->
+        <div class="hero-up hero-d5 mt-5 flex flex-wrap gap-3 justify-center lg:justify-start" style="animation-delay: 0.65s;">
+          <p class="text-slate-600 text-xs">
+            Trusted by <span class="text-slate-400 font-medium">1,000+</span> users in <span class="text-slate-400 font-medium">150+ countries</span>
+          </p>
+          <span class="text-slate-800 hidden sm:block text-xs">·</span>
+          <p class="text-slate-600 text-xs">
+            <span class="text-emerald-500 font-semibold">60% cheaper</span> than YNAB
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: Dashboard mockup -->
+      <div class="relative hidden lg:block hero-right hero-d6">
+        <!-- Glow behind mockup -->
+        <div class="absolute inset-0 bg-emerald-500/8 rounded-3xl blur-3xl scale-90"></div>
+
+        <!-- App mockup -->
+        <div class="relative animate-float rounded-2xl border border-slate-700/60 bg-slate-900 overflow-hidden shadow-2xl shadow-black/60">
+          <!-- Window bar -->
+          <div class="flex items-center gap-2 bg-slate-800/80 px-4 py-3 border-b border-slate-700/50">
+            <div class="flex gap-1.5">
+              <div class="w-3 h-3 rounded-full bg-red-500/70"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500/70"></div>
+              <div class="w-3 h-3 rounded-full bg-emerald-500/70"></div>
+            </div>
+            <div class="flex-1 bg-slate-700/50 rounded-md h-5 ml-2 flex items-center px-3">
+              <span class="text-slate-500 text-xs">app.expensetracker.app/dashboard</span>
+            </div>
+          </div>
+
+          <!-- Dashboard content -->
+          <div class="p-5 space-y-3.5">
+            <!-- Stat cards -->
+            <div class="grid grid-cols-3 gap-3">
+              <div class="bg-slate-800/80 rounded-xl p-3 border border-slate-700/40">
+                <p class="text-slate-500 text-xs mb-1">Net Worth</p>
+                <p class="text-white font-bold text-lg leading-none">$124,500</p>
+                <p class="text-emerald-400 text-xs mt-1.5">↑ 12.3%</p>
+              </div>
+              <div class="bg-slate-800/80 rounded-xl p-3 border border-slate-700/40">
+                <p class="text-slate-500 text-xs mb-1">Expenses</p>
+                <p class="text-white font-bold text-lg leading-none">$3,240</p>
+                <p class="text-slate-400 text-xs mt-1.5">of $5k budget</p>
+              </div>
+              <div class="bg-emerald-500/10 rounded-xl p-3 border border-emerald-500/20">
+                <p class="text-emerald-400 text-xs mb-1">Savings</p>
+                <p class="text-white font-bold text-lg leading-none">$1,760</p>
+                <p class="text-emerald-400 text-xs mt-1.5">on track</p>
+              </div>
+            </div>
+
+            <!-- Spending chart -->
+            <div class="bg-slate-800/80 rounded-xl p-4 border border-slate-700/40">
+              <div class="flex items-center justify-between mb-3">
+                <p class="text-slate-300 text-xs font-medium">Spending Trend</p>
+                <span class="text-slate-500 text-xs">Last 6 months</span>
+              </div>
+              <div class="flex items-end gap-2 h-14">
+                {[55, 72, 48, 88, 65, 58].map((h) => (
+                  <div class="flex-1 flex flex-col items-center">
+                    <div
+                      class="chart-bar w-full bg-emerald-500/25 hover:bg-emerald-500/50 rounded-t transition-colors"
+                      style={`height: ${h}%`}
+                    ></div>
+                  </div>
+                ))}
+              </div>
+              <div class="flex justify-between mt-1.5">
+                {['Aug','Sep','Oct','Nov','Dec','Jan'].map((m) => (
+                  <span class="flex-1 text-center text-slate-600 text-[10px]">{m}</span>
+                ))}
+              </div>
+            </div>
+
+            <!-- Budget progress -->
+            <div class="bg-slate-800/80 rounded-xl p-4 border border-slate-700/40">
+              <p class="text-slate-300 text-xs font-medium mb-3">Budget Progress</p>
+              <div class="space-y-2.5">
+                {[
+                  { label: 'Food & Dining', pct: 68, color: 'bg-emerald-500' },
+                  { label: 'Transport', pct: 40, color: 'bg-blue-500' },
+                  { label: 'Entertainment', pct: 91, color: 'bg-orange-500' },
+                ].map((b) => (
+                  <div>
+                    <div class="flex justify-between mb-1">
+                      <span class="text-slate-400 text-[10px]">{b.label}</span>
+                      <span class={`text-[10px] font-medium ${b.pct >= 85 ? 'text-orange-400' : 'text-slate-400'}`}>{b.pct}%</span>
+                    </div>
+                    <div class="h-1.5 bg-slate-700/60 rounded-full overflow-hidden">
+                      <div class={`h-full ${b.color} rounded-full transition-all`} style={`width: ${b.pct}%`}></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Recent transactions -->
+            <div class="bg-slate-800/80 rounded-xl p-4 border border-slate-700/40">
+              <p class="text-slate-300 text-xs font-medium mb-2.5">Recent Transactions</p>
+              <div class="space-y-2">
+                {[
+                  { label: 'Food & Dining', amount: '-$45.00', color: 'text-red-400', dot: 'bg-orange-500' },
+                  { label: 'Transportation', amount: '-$22.50', color: 'text-red-400', dot: 'bg-blue-500' },
+                  { label: 'Salary', amount: '+$5,000', color: 'text-emerald-400', dot: 'bg-emerald-500' },
+                ].map((tx) => (
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                      <div class={`w-1.5 h-1.5 rounded-full ${tx.dot} flex-shrink-0`}></div>
+                      <span class="text-slate-300 text-xs">{tx.label}</span>
+                    </div>
+                    <span class={`${tx.color} text-xs font-medium tabular-nums`}>{tx.amount}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating badge — encryption -->
+        <div class="absolute -top-4 -right-4 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl px-3.5 py-2.5 shadow-xl flex items-center gap-2.5 animate-float" style="animation-delay: 1s;">
+          <svg class="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <span class="text-slate-200 text-xs font-semibold">Bank-level Secure</span>
+        </div>
+
+        <!-- Floating badge — offline -->
+        <div class="absolute -bottom-4 -left-4 bg-slate-800/90 backdrop-blur border border-slate-700 rounded-xl px-3.5 py-2.5 shadow-xl flex items-center gap-2.5 animate-float" style="animation-delay: 2.5s;">
+          <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse flex-shrink-0"></div>
+          <span class="text-slate-200 text-xs font-semibold">Works Offline</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom fade -->
+  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-950 to-transparent pointer-events-none"></div>
+</section>

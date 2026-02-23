@@ -1,0 +1,146 @@
+---
+const competitors = ['Expense Tracker', 'YNAB', 'Monarch', 'PocketGuard'];
+
+type CellValue = boolean | string | 'partial';
+
+const rows: { label: string; us: CellValue; ynab: CellValue; monarch: CellValue; pocket: CellValue }[] = [
+  { label: 'Free plan — forever',       us: true,      ynab: false,     monarch: false,     pocket: 'partial' },
+  { label: 'Works fully offline',        us: true,      ynab: false,     monarch: false,     pocket: false     },
+  { label: 'No bank account required',   us: true,      ynab: false,     monarch: false,     pocket: false     },
+  { label: 'Expense & budget tracking',  us: true,      ynab: true,      monarch: true,      pocket: true      },
+  { label: 'Net worth dashboard',        us: true,      ynab: false,     monarch: true,      pocket: false     },
+  { label: 'Debt payoff planner',        us: true,      ynab: 'partial', monarch: true,      pocket: false     },
+  { label: 'Asset portfolio tracker',    us: true,      ynab: false,     monarch: true,      pocket: false     },
+  { label: 'Zakat calculator',           us: true,      ynab: false,     monarch: false,     pocket: false     },
+  { label: 'Excel / CSV export',         us: true,      ynab: false,     monarch: 'partial', pocket: false     },
+  { label: 'Mobile + Desktop app',       us: true,      ynab: true,      monarch: true,      pocket: true      },
+  { label: 'Monthly price',             us: 'Free / $4.99', ynab: '$10', monarch: '$14.99', pocket: '$2.99'  },
+];
+---
+
+<section id="compare" class="py-16 lg:py-24 bg-slate-900/30">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Section header -->
+    <div class="text-center mb-10 reveal">
+      <span class="inline-block text-emerald-400 text-sm font-semibold uppercase tracking-wider mb-4">Compare</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-5">
+        More features. Lower price.<br />
+        <span class="text-gradient-shimmer">No compromises.</span>
+      </h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+        YNAB shut down its free plan. Mint shut down entirely. Monarch costs $14.99/month. We give you more for less — and always keep a free tier.
+      </p>
+    </div>
+
+    <!-- Mint callout banner -->
+    <div class="reveal mb-10 flex flex-col sm:flex-row items-center gap-4 bg-amber-500/8 border border-amber-500/20 rounded-2xl px-6 py-4">
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <div class="w-9 h-9 bg-amber-500/10 border border-amber-500/20 rounded-xl flex items-center justify-center">
+          <svg class="w-5 h-5 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </div>
+        <span class="text-amber-400 font-bold text-sm whitespace-nowrap">Mint shut down in 2024</span>
+      </div>
+      <p class="text-slate-400 text-sm text-center sm:text-left">
+        Millions of Mint users are looking for a replacement. Expense Tracker does everything Mint did — plus net worth tracking, debt planning, and Zakat — with no ads and no data selling.
+      </p>
+      <a href="https://expense-tracker-dashboard-omega.vercel.app/auth" class="w-full sm:w-auto flex-shrink-0 bg-emerald-500 hover:bg-emerald-400 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all text-center whitespace-nowrap shadow-lg shadow-emerald-500/20">
+        Switch for Free →
+      </a>
+    </div>
+
+    <!-- Comparison table -->
+    <div class="reveal overflow-x-auto rounded-2xl border border-slate-800">
+      <table class="w-full min-w-[600px] border-collapse">
+        <thead>
+          <tr class="border-b border-slate-800">
+            <th class="text-left py-4 px-5 text-slate-400 text-sm font-medium w-[35%]">Feature</th>
+            <!-- Our column — highlighted -->
+            <th class="py-4 px-4 text-center w-[16%]">
+              <div class="inline-flex flex-col items-center gap-1">
+                <span class="text-emerald-400 font-bold text-sm">Expense Tracker</span>
+                <span class="bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">Beta</span>
+              </div>
+            </th>
+            <th class="py-4 px-4 text-center w-[16%]">
+              <span class="text-slate-400 font-semibold text-sm">YNAB</span>
+            </th>
+            <th class="py-4 px-4 text-center w-[16%]">
+              <span class="text-slate-400 font-semibold text-sm">Monarch</span>
+            </th>
+            <th class="py-4 px-4 text-center w-[16%]">
+              <span class="text-slate-400 font-semibold text-sm">PocketGuard</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => {
+            const isLast = i === rows.length - 1;
+            const isPricingRow = isLast;
+
+            const renderCell = (val: CellValue, isUs: boolean) => {
+              if (val === true) {
+                return (
+                  <span class={`inline-flex items-center justify-center w-6 h-6 rounded-full ${isUs ? 'bg-emerald-500/15 text-emerald-400' : 'text-emerald-500/70'}`}>
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </span>
+                );
+              }
+              if (val === false) {
+                return (
+                  <span class="inline-flex items-center justify-center w-6 h-6 text-slate-700">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </span>
+                );
+              }
+              if (val === 'partial') {
+                return <span class="text-amber-500/70 text-xs font-medium">Partial</span>;
+              }
+              // String value (price)
+              if (isUs) {
+                return <span class="text-emerald-400 font-bold text-sm">{val}</span>;
+              }
+              return <span class="text-slate-500 text-sm">{val}</span>;
+            };
+
+            return (
+              <tr class={`border-b border-slate-800/60 last:border-b-0 ${isPricingRow ? 'bg-slate-900/60' : 'hover:bg-slate-900/30'} transition-colors`}>
+                <td class={`py-3.5 px-5 text-sm ${isPricingRow ? 'text-white font-semibold' : 'text-slate-300'}`}>
+                  {row.label}
+                </td>
+                <!-- Our column — highlighted background -->
+                <td class="py-3.5 px-4 text-center bg-emerald-500/[0.04] border-x border-emerald-500/10">
+                  <Fragment set:html="" />
+                  {renderCell(row.us, true)}
+                </td>
+                <td class="py-3.5 px-4 text-center">
+                  {renderCell(row.ynab, false)}
+                </td>
+                <td class="py-3.5 px-4 text-center">
+                  {renderCell(row.monarch, false)}
+                </td>
+                <td class="py-3.5 px-4 text-center">
+                  {renderCell(row.pocket, false)}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Bottom note -->
+    <p class="text-center text-slate-600 text-xs mt-6 reveal">
+      Competitor data based on publicly available pricing and feature pages. Last verified Feb 2026.
+    </p>
+  </div>
+</section>

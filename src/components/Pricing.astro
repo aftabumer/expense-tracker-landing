@@ -1,0 +1,298 @@
+---
+const APP_URL = 'https://expense-tracker-dashboard-omega.vercel.app/auth';
+
+const plans = [
+  {
+    name: 'Starter',
+    monthlyPrice: '$0',
+    annualPrice: '$0',
+    monthlyPeriod: 'forever',
+    annualPeriod: 'forever',
+    description: 'Everything you need to start understanding and controlling your finances.',
+    cta: 'Get Started Free',
+    featured: false,
+    features: [
+      'Unlimited expense tracking',
+      'Monthly budget management',
+      'Income tracking',
+      'Basic spending analytics',
+      'Up to 10 expense categories',
+      'Offline app support',
+      'CSV data export',
+      'Mobile & desktop apps',
+    ],
+  },
+  {
+    name: 'Pro',
+    monthlyPrice: '$4.99',
+    annualPrice: '$3.99',
+    monthlyPeriod: '/month',
+    annualPeriod: '/month',
+    annualBilling: 'billed $47.88/year',
+    annualSaving: 'Save 20% — $12/year',
+    description: 'Full financial visibility — net worth, debt, assets, Zakat, and advanced analytics.',
+    cta: 'Start Free Trial',
+    featured: true,
+    features: [
+      'Everything in Starter',
+      'Asset portfolio tracker',
+      'Debt payoff planner & strategy',
+      'Net worth dashboard & history',
+      'Zakat calculator with PDF report',
+      'Unlimited categories',
+      'Advanced analytics & insights',
+      'Excel export (.xlsx)',
+      'Recurring expense tracker',
+      'Priority support',
+    ],
+  },
+];
+---
+
+<section id="pricing" class="py-16 lg:py-24 bg-slate-900/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="text-center mb-8 reveal">
+      <span class="inline-block text-emerald-400 text-sm font-semibold uppercase tracking-wider mb-4">Pricing</span>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-5">
+        Transparent pricing.<br />No surprises.
+      </h2>
+      <p class="text-slate-400 text-lg max-w-xl mx-auto">
+        Start free and stay free. Upgrade to Pro only when you're ready for the full financial picture.
+      </p>
+    </div>
+
+    <!-- Competitor price strip -->
+    <div class="reveal flex flex-wrap justify-center gap-3 mb-8">
+      {[
+        { name: 'Monarch Money', price: '$14.99/mo', dim: true },
+        { name: 'YNAB', price: '$10/mo', dim: true },
+        { name: 'Copilot', price: '$13/mo', dim: true },
+        { name: 'Expense Tracker', price: 'Free / $4.99/mo', highlight: true },
+      ].map((c) => (
+        <div class={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium border transition-all ${
+          c.highlight
+            ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
+            : 'bg-slate-900/60 border-slate-800 text-slate-500'
+        }`}>
+          {c.highlight && (
+            <svg class="w-3 h-3 text-emerald-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          )}
+          <span class={c.highlight ? 'text-white font-semibold' : ''}>{c.name}</span>
+          <span class={`font-bold ${c.highlight ? 'text-emerald-400' : 'text-slate-600'}`}>{c.price}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Monthly / Yearly toggle -->
+    <div class="flex items-center justify-center mb-8 reveal">
+      <div class="inline-flex items-center bg-slate-800/80 border border-slate-700 rounded-full p-1 gap-1">
+        <button
+          id="btn-monthly"
+          class="billing-tab text-sm font-semibold px-5 py-2 rounded-full transition-all bg-slate-700 text-white"
+        >
+          Monthly
+        </button>
+        <button
+          id="btn-yearly"
+          class="billing-tab text-sm font-medium px-5 py-2 rounded-full transition-all text-slate-400 hover:text-white"
+        >
+          Yearly
+          <span class="ml-1.5 text-xs font-bold text-emerald-400">-20%</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Plans — mobile scroll snap (Pro centered), desktop grid -->
+    <div
+      id="pricing-carousel"
+      class="flex md:grid md:grid-cols-2 gap-5 md:gap-8 overflow-x-auto md:overflow-visible snap-x md:snap-none snap-mandatory -mx-4 px-4 md:mx-auto md:max-w-3xl md:px-0 pb-2 md:pb-0 scrollbar-hide"
+    >
+      {plans.map((plan, i) => (
+        <div
+          class={`pricing-card-item snap-center flex-shrink-0 w-[85vw] sm:w-[72vw] md:w-auto reveal reveal-delay-${i + 1} overflow-hidden rounded-2xl flex flex-col transition-all duration-300 ${
+            plan.featured
+              ? 'border border-emerald-500/35 bg-gradient-to-b from-slate-800/70 to-slate-900 shadow-2xl shadow-emerald-500/10 glow-card is-featured'
+              : 'border border-slate-700/60 bg-slate-900/50 hover:border-slate-600/70'
+          }`}
+        >
+          <!-- Pro: top accent gradient bar -->
+          {plan.featured && (
+            <div class="h-[3px] bg-gradient-to-r from-transparent via-emerald-400 to-teal-400 flex-shrink-0"></div>
+          )}
+
+          <div class="p-6 sm:p-8 flex flex-col flex-1">
+
+            <!-- Plan name + badge -->
+            <div class="flex items-start justify-between gap-3 mb-5">
+              <div>
+                <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest mb-1">Plan</p>
+                <h3 class={`font-extrabold text-xl tracking-tight ${plan.featured ? 'text-white' : 'text-slate-200'}`}>{plan.name}</h3>
+              </div>
+              {plan.featured && (
+                <span class="flex-shrink-0 bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[10px] font-extrabold px-3 py-1.5 rounded-full uppercase tracking-wider whitespace-nowrap">
+                  Most Popular
+                </span>
+              )}
+            </div>
+
+            <!-- Price block -->
+            <div class="mb-5">
+              <!-- Monthly price -->
+              <div class="price-row-monthly">
+                <div class="flex items-end gap-1.5 leading-none">
+                  <span class={`text-5xl font-extrabold tabular-nums leading-none tracking-tight ${plan.featured ? 'text-white' : 'text-slate-200'}`}>
+                    {plan.monthlyPrice}
+                  </span>
+                  <span class="text-slate-500 text-sm font-medium pb-1.5">{plan.monthlyPeriod}</span>
+                </div>
+              </div>
+              <!-- Annual price -->
+              <div class="price-row-annual hidden">
+                <div class="flex items-end gap-1.5 leading-none">
+                  <span class={`text-5xl font-extrabold tabular-nums leading-none tracking-tight ${plan.featured ? 'text-white' : 'text-slate-200'}`}>
+                    {plan.annualPrice}
+                  </span>
+                  <span class="text-slate-500 text-sm font-medium pb-1.5">{plan.annualPeriod}</span>
+                </div>
+                {'annualBilling' in plan && (
+                  <p class="text-slate-600 text-xs mt-1.5">{(plan as any).annualBilling}</p>
+                )}
+              </div>
+              {plan.annualSaving && (
+                <p class="annual-saving hidden text-emerald-400 text-xs font-semibold mt-2 flex items-center gap-1">
+                  <svg class="w-3 h-3 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                  {plan.annualSaving}
+                </p>
+              )}
+            </div>
+
+            <!-- Description -->
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">{plan.description}</p>
+
+            <!-- CTA -->
+            <a
+              href={APP_URL}
+              class={`w-full font-semibold py-3.5 rounded-xl text-center text-sm transition-all duration-200 ${
+                plan.featured
+                  ? 'bg-emerald-500 hover:bg-emerald-400 text-white shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/35 hover:-translate-y-0.5'
+                  : 'bg-transparent border border-slate-600/80 text-slate-300 hover:bg-slate-800 hover:text-white hover:border-slate-500'
+              }`}
+            >
+              {plan.cta}
+            </a>
+
+            <!-- Divider + section label -->
+            <div class="mt-7 mb-4">
+              <div class="h-px bg-slate-800/80"></div>
+              <p class="text-slate-600 text-[10px] font-bold uppercase tracking-widest mt-4 mb-3.5">
+                {plan.featured ? "Everything you get" : "Included for free"}
+              </p>
+            </div>
+
+            <!-- Feature list -->
+            <ul class="space-y-2.5 flex-1">
+              {plan.features.map((feature) => (
+                <li class="flex items-start gap-2.5">
+                  <div class={`flex-shrink-0 mt-0.5 w-4 h-4 rounded-full flex items-center justify-center ${
+                    plan.featured ? 'bg-emerald-500/15' : 'bg-slate-700/60'
+                  }`}>
+                    <svg
+                      class={`w-2.5 h-2.5 ${plan.featured ? 'text-emerald-400' : 'text-slate-400'}`}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                  </div>
+                  <span class="text-slate-300 text-sm leading-relaxed">{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Mobile scroll dots — Pro active by default -->
+    <div class="flex md:hidden justify-center gap-2 mt-5">
+      {plans.map((plan) => (
+        <div
+          class={`pricing-dot rounded-full transition-all duration-300 ${plan.featured ? 'w-5 h-2 bg-emerald-500' : 'w-2 h-2 bg-slate-600'}`}
+        ></div>
+      ))}
+    </div>
+
+    <!-- Footer note -->
+    <p class="text-center text-slate-500 text-sm mt-8 reveal">
+      No credit card required for Starter &nbsp;·&nbsp; Cancel Pro anytime &nbsp;·&nbsp; Your data is always yours to export
+    </p>
+  </div>
+</section>
+
+<script>
+  const btnMonthly = document.getElementById('btn-monthly')!;
+  const btnYearly = document.getElementById('btn-yearly')!;
+  const monthlyRows = document.querySelectorAll('.price-row-monthly');
+  const annualRows = document.querySelectorAll('.price-row-annual');
+  const annualSavings = document.querySelectorAll('.annual-saving');
+
+  let isYearly = false;
+
+  function setTab(yearly: boolean) {
+    isYearly = yearly;
+
+    btnMonthly.classList.toggle('bg-slate-700', !yearly);
+    btnMonthly.classList.toggle('text-white', !yearly);
+    btnMonthly.classList.toggle('text-slate-400', yearly);
+
+    btnYearly.classList.toggle('bg-slate-700', yearly);
+    btnYearly.classList.toggle('text-white', yearly);
+    btnYearly.classList.toggle('text-slate-400', !yearly);
+
+    monthlyRows.forEach(el => el.classList.toggle('hidden', yearly));
+    annualRows.forEach(el => el.classList.toggle('hidden', !yearly));
+    annualSavings.forEach(el => el.classList.toggle('hidden', !yearly));
+  }
+
+  btnMonthly.addEventListener('click', () => setTab(false));
+  btnYearly.addEventListener('click', () => setTab(true));
+
+  // Carousel dots & auto-center Pro on mobile
+  const carousel = document.getElementById('pricing-carousel');
+  const dots = document.querySelectorAll<HTMLElement>('.pricing-dot');
+
+  // Auto-center Pro card on mobile load
+  if (carousel && window.innerWidth < 768) {
+    const proCard = carousel.querySelector('.is-featured') as HTMLElement | null;
+    if (proCard) {
+      const scrollLeft = proCard.offsetLeft - (carousel.clientWidth - proCard.clientWidth) / 2;
+      carousel.scrollLeft = Math.max(0, scrollLeft);
+    }
+  }
+
+  // Update dots on scroll
+  carousel?.addEventListener('scroll', () => {
+    if (!carousel) return;
+    const totalScrollable = carousel.scrollWidth - carousel.clientWidth;
+    const index = totalScrollable > 0
+      ? Math.round((carousel.scrollLeft / totalScrollable) * (dots.length - 1))
+      : 0;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('bg-emerald-500', i === index);
+      dot.classList.toggle('w-5', i === index);
+      dot.classList.toggle('bg-slate-600', i !== index);
+      dot.classList.toggle('w-2', i !== index);
+    });
+  });
+</script>

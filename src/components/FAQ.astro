@@ -1,0 +1,100 @@
+---
+const faqs = [
+  {
+    question: 'Is my financial data secure?',
+    answer:
+      'Yes. All your data is encrypted in transit (HTTPS/TLS) and at rest in our database. We use bank-level Row-Level Security — even our own team cannot read your financial records. You can export and delete your data at any time.',
+  },
+  {
+    question: 'Does Expense Tracker work offline?',
+    answer:
+      'Yes — Expense Tracker works fully offline. Install it on your phone or desktop and log expenses even without an internet connection. Everything syncs automatically the next time you come online.',
+  },
+  {
+    question: 'What currencies are supported?',
+    answer:
+      'Expense Tracker works with any currency. You can set your preferred currency in Settings and all amounts, budgets, and charts will reflect it. Multi-currency tracking (e.g. earning in USD, spending locally) is on our roadmap.',
+  },
+  {
+    question: 'What is the Zakat calculator and who is it for?',
+    answer:
+      'The Zakat calculator is designed for Muslim users who are required to pay 2.5% of their total zakatable wealth annually. Expense Tracker automatically identifies your zakatable assets (gold, cash, investments, receivables), deducts eligible debts, compares against the nisab threshold, and tells you exactly how much Zakat you owe. It also lets you track payments made.',
+  },
+  {
+    question: 'Can I export my data?',
+    answer:
+      'Free users can export expenses and income as CSV. Pro users get full Excel (.xlsx) export with multiple sheets — expenses, income, assets, liabilities, Zakat payments, and net worth history. You always own your data.',
+  },
+  {
+    question: 'Is there a mobile app?',
+    answer:
+      'Yes — Expense Tracker is fully installable on Android and iOS directly from your browser, working just like a native app. It runs offline, supports notifications, and updates automatically. No app store download needed.',
+  },
+];
+---
+
+<section id="faq" class="py-16 lg:py-24">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-10 reveal">
+      <span class="inline-block text-emerald-400 text-sm font-semibold uppercase tracking-wider mb-4">FAQ</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-5">
+        Frequently asked questions
+      </h2>
+      <p class="text-slate-400 text-lg">
+        Can't find your answer? <a href="mailto:hello@expensetracker.app" class="text-emerald-400 hover:text-emerald-300 transition-colors">Email us →</a>
+      </p>
+    </div>
+
+    <!-- Accordion -->
+    <div class="space-y-3 reveal">
+      {faqs.map((faq, i) => (
+        <div
+          class="faq-item border border-slate-800 hover:border-slate-700 rounded-xl overflow-hidden transition-colors"
+          data-index={i}
+        >
+          <button
+            class="faq-trigger w-full flex items-center justify-between px-6 py-5 text-left"
+            aria-expanded="false"
+          >
+            <span class="text-white font-semibold text-sm sm:text-base pr-4">{faq.question}</span>
+            <span class="faq-icon flex-shrink-0 w-6 h-6 text-slate-400 transition-transform duration-300">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-content hidden px-6 pb-5">
+            <p class="text-slate-400 text-sm leading-relaxed">{faq.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-trigger').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.closest('.faq-item') as HTMLElement;
+      const content = item.querySelector('.faq-content') as HTMLElement;
+      const icon = item.querySelector('.faq-icon') as HTMLElement;
+      const isOpen = !content.classList.contains('hidden');
+
+      // Close all others
+      document.querySelectorAll('.faq-item').forEach((other) => {
+        if (other !== item) {
+          other.querySelector('.faq-content')?.classList.add('hidden');
+          const otherIcon = other.querySelector('.faq-icon') as HTMLElement;
+          if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+          other.querySelector('.faq-trigger')?.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Toggle current
+      content.classList.toggle('hidden');
+      icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+</script>

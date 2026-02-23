@@ -1,0 +1,260 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = 'Expense Tracker (Beta) — Free Personal Finance App | Budget, Debt & Net Worth',
+  description = 'Track expenses, crush debt, grow your net worth, and calculate Zakat — all in one powerful free dashboard. No bank sync required. Works offline. Join free today.',
+  image = '/og-image.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(image, Astro.site);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Expense Tracker",
+      "url": Astro.site?.toString(),
+      "logo": new URL('/favicon.svg', Astro.site).toString(),
+      "description": "Free personal finance dashboard for tracking expenses, debt, net worth, and Zakat.",
+      "sameAs": ["https://twitter.com/expensetracker"]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Expense Tracker (Beta)",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web, Android, iOS",
+      "url": Astro.site?.toString(),
+      "description": description,
+      "featureList": "Expense Tracking, Budget Management, Debt Payoff Planner, Net Worth Dashboard, Asset Portfolio, Zakat Calculator, Offline Support, CSV & Excel Export",
+      "isAccessibleForFree": true,
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Starter",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free forever — unlimited expenses, budgets, offline support"
+        },
+        {
+          "@type": "Offer",
+          "name": "Pro",
+          "price": "4.99",
+          "priceCurrency": "USD",
+          "description": "Net worth, debt planning, Zakat calculator, Excel export, advanced analytics"
+        }
+      ]
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="expense tracker, budget app, personal finance, free budget planner, debt payoff, net worth tracker, Zakat calculator, offline finance app, YNAB alternative, Mint alternative" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Expense Tracker" />
+    <meta name="theme-color" content="#10b981" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Expense Tracker" />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Expense Tracker — Free personal finance dashboard" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@expensetracker" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Fonts: Plus Jakarta Sans — trending modern SaaS font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{title}</title>
+
+    <!-- JSON-LD Structured Data -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body class="bg-slate-950 text-slate-100 font-sans antialiased">
+    <slot />
+
+    <!-- Scroll reveal -->
+    <script>
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+    </script>
+
+    <!-- Animated counter script -->
+    <script>
+      function easeOutCubic(t: number) { return 1 - Math.pow(1 - t, 3); }
+
+      function animateCounter(el: HTMLElement) {
+        const target = parseFloat(el.dataset.count ?? '0');
+        const suffix = el.dataset.suffix ?? '';
+        const decimals = parseInt(el.dataset.decimals ?? '0');
+        const duration = 1800;
+        const start = performance.now();
+
+        function tick(now: number) {
+          const t = Math.min((now - start) / duration, 1);
+          const value = target * easeOutCubic(t);
+          el.textContent = (decimals > 0 ? value.toFixed(decimals) : Math.round(value).toLocaleString()) + suffix;
+          if (t < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      const counterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target as HTMLElement);
+              counterObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+      document.querySelectorAll('[data-count]').forEach((el) => counterObserver.observe(el));
+    </script>
+
+    <style is:global>
+      /* ── Scroll reveal ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .reveal.visible { opacity: 1; transform: translateY(0); }
+      .reveal-delay-1 { transition-delay: 0.08s; }
+      .reveal-delay-2 { transition-delay: 0.16s; }
+      .reveal-delay-3 { transition-delay: 0.24s; }
+      .reveal-delay-4 { transition-delay: 0.32s; }
+      .reveal-delay-5 { transition-delay: 0.40s; }
+
+      /* ── Hero entrance animations (load-based, not scroll) ── */
+      @keyframes heroFadeUp {
+        from { opacity: 0; transform: translateY(32px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes heroFadeRight {
+        from { opacity: 0; transform: translateX(48px); }
+        to   { opacity: 1; transform: translateX(0); }
+      }
+
+      .hero-up {
+        opacity: 0;
+        animation: heroFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .hero-right {
+        opacity: 0;
+        animation: heroFadeRight 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+      .hero-d1 { animation-delay: 0.05s; }
+      .hero-d2 { animation-delay: 0.18s; }
+      .hero-d3 { animation-delay: 0.30s; }
+      .hero-d4 { animation-delay: 0.44s; }
+      .hero-d5 { animation-delay: 0.58s; }
+      .hero-d6 { animation-delay: 0.22s; }
+
+      /* ── Shimmer gradient text ── */
+      @keyframes shimmerText {
+        0%   { background-position: 0% 50%; }
+        100% { background-position: 200% 50%; }
+      }
+      .text-gradient-shimmer {
+        background: linear-gradient(90deg, #34d399 0%, #818cf8 28%, #10b981 52%, #a78bfa 76%, #34d399 100%);
+        background-size: 250% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shimmerText 6s linear infinite;
+      }
+
+      /* ── Glow pulse (featured pricing card) ── */
+      @keyframes pulseGlow {
+        0%, 100% { box-shadow: 0 0 24px rgba(16, 185, 129, 0.12), 0 0 0 2px rgba(16, 185, 129, 0.25); }
+        50%       { box-shadow: 0 0 56px rgba(16, 185, 129, 0.35), 0 0 0 2px rgba(16, 185, 129, 0.55); }
+      }
+      .glow-card { animation: pulseGlow 3.5s ease-in-out infinite; }
+
+      /* ── Chart bar grow ── */
+      @keyframes barGrow {
+        from { transform: scaleY(0); }
+        to   { transform: scaleY(1); }
+      }
+      .chart-bar {
+        transform-origin: bottom;
+        opacity: 0;
+        animation: barGrow 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+      .chart-bar:nth-child(1) { animation-delay: 0.55s; opacity: 0; }
+      .chart-bar:nth-child(2) { animation-delay: 0.65s; opacity: 0; }
+      .chart-bar:nth-child(3) { animation-delay: 0.75s; opacity: 0; }
+      .chart-bar:nth-child(4) { animation-delay: 0.85s; opacity: 0; }
+      .chart-bar:nth-child(5) { animation-delay: 0.95s; opacity: 0; }
+      .chart-bar:nth-child(6) { animation-delay: 1.05s; opacity: 0; }
+      @keyframes barFadeGrow {
+        from { opacity: 0; transform: scaleY(0); }
+        to   { opacity: 1; transform: scaleY(1); }
+      }
+      .chart-bar { animation-name: barFadeGrow; }
+
+      /* ── Badge shimmer ── */
+      @keyframes badgeShimmer {
+        0%, 100% { background-color: rgba(16, 185, 129, 0.08); }
+        50%       { background-color: rgba(16, 185, 129, 0.15); }
+      }
+      .badge-pulse { animation: badgeShimmer 2.5s ease-in-out infinite; }
+
+      /* ── Scrollbar ── */
+      ::-webkit-scrollbar { width: 5px; }
+      ::-webkit-scrollbar-track { background: #0f172a; }
+      ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+      ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+      /* ── Scrollbar hide utility ── */
+      .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+      .scrollbar-hide::-webkit-scrollbar { display: none; }
+    </style>
+  </body>
+</html>

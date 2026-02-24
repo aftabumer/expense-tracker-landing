@@ -8,7 +8,7 @@ interface Props {
 const {
   title = 'Expense Tracker (Beta) — Free Personal Finance App | Budget, Debt & Net Worth',
   description = 'Track expenses, crush debt, grow your net worth, and calculate Zakat — all in one powerful free dashboard. No bank sync required. Works offline. Join free today.',
-  image = '/og-image.png',
+  image = '/expense-tracker-logo.png',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -21,7 +21,7 @@ const jsonLd = {
       "@type": "Organization",
       "name": "Expense Tracker",
       "url": Astro.site?.toString(),
-      "logo": new URL('/favicon.svg', Astro.site).toString(),
+      "logo": new URL('/expense-tracker-logo.png', Astro.site).toString(),
       "description": "Free personal finance dashboard for tracking expenses, debt, net worth, and Zakat.",
       "sameAs": ["https://twitter.com/expensetracker"]
     },
@@ -88,8 +88,12 @@ const jsonLd = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageURL} />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512x512.png" />
+    <link rel="manifest" href="/manifest.json" />
 
     <!-- Fonts: Plus Jakarta Sans — trending modern SaaS font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

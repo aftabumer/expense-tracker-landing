@@ -115,22 +115,32 @@ const APP_URL = 'https://expense-tracker-dashboard-omega.vercel.app/auth';
 
           <!-- Dashboard content -->
           <div class="p-5 space-y-3.5">
-            <!-- Stat cards -->
-            <div class="grid grid-cols-3 gap-3">
+            <!-- Greeting -->
+            <div class="mb-1">
+              <p class="text-white font-bold text-sm">Good morning 👋</p>
+              <p class="text-emerald-400 text-[11px] mt-0.5">You're on track to save $1,760 this month</p>
+            </div>
+            <!-- Stat cards — 2×2 matching real dashboard -->
+            <div class="grid grid-cols-2 gap-2.5">
               <div class="bg-slate-800/80 rounded-xl p-3 border border-slate-700/40">
-                <p class="text-slate-500 text-xs mb-1">Net Worth</p>
-                <p class="text-white font-bold text-lg leading-none">$124,500</p>
-                <p class="text-emerald-400 text-xs mt-1.5">↑ 12.3%</p>
+                <p class="text-slate-500 text-[10px] mb-1">Money In</p>
+                <p class="text-white font-bold text-base leading-none">$5,000</p>
+                <p class="text-emerald-400 text-[10px] mt-1.5">This month</p>
               </div>
-              <div class="bg-slate-800/80 rounded-xl p-3 border border-slate-700/40">
-                <p class="text-slate-500 text-xs mb-1">Expenses</p>
-                <p class="text-white font-bold text-lg leading-none">$3,240</p>
-                <p class="text-slate-400 text-xs mt-1.5">of $5k budget</p>
+              <div class="bg-slate-800/80 rounded-xl p-3 border border-rose-500/20">
+                <p class="text-slate-500 text-[10px] mb-1">Money Spent</p>
+                <p class="text-white font-bold text-base leading-none">$3,240</p>
+                <p class="text-rose-400 text-[10px] mt-1.5">This month</p>
               </div>
-              <div class="bg-emerald-500/10 rounded-xl p-3 border border-emerald-500/20">
-                <p class="text-emerald-400 text-xs mb-1">Savings</p>
-                <p class="text-white font-bold text-lg leading-none">$1,760</p>
-                <p class="text-emerald-400 text-xs mt-1.5">on track</p>
+              <div class="bg-slate-800/80 rounded-xl p-3 border border-blue-500/20">
+                <p class="text-slate-500 text-[10px] mb-1">You Saved</p>
+                <p class="text-white font-bold text-base leading-none">$1,760</p>
+                <p class="text-blue-400 text-[10px] mt-1.5">Income – Expenses</p>
+              </div>
+              <div class="bg-slate-800/80 rounded-xl p-3 border border-violet-500/20">
+                <p class="text-slate-500 text-[10px] mb-1">Net Worth</p>
+                <p class="text-white font-bold text-base leading-none">$124,500</p>
+                <p class="text-violet-400 text-[10px] mt-1.5">↑ 12.3%</p>
               </div>
             </div>
 

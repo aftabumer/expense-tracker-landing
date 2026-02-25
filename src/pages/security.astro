@@ -1,0 +1,217 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const lastUpdated = 'February 25, 2026';
+const sections = [
+  { id: 'promise',        label: 'Our Security Promise' },
+  { id: 'encryption',     label: '1. Encryption' },
+  { id: 'private-access', label: '2. Only You Can See Your Data' },
+  { id: 'login',          label: '3. Account Login Security' },
+  { id: 'exports',        label: '4. Exports Stay on Your Device' },
+  { id: 'no-tracking',    label: '5. Zero Tracking' },
+  { id: 'offline',        label: '6. Offline Mode' },
+  { id: 'reporting',      label: '7. Report a Concern' },
+];
+---
+
+<Layout
+  title="Security — Expense Tracker"
+  description="Security at Expense Tracker. Your financial data is fully encrypted and private. Nobody can see what you enter — not even us."
+>
+  <Header />
+
+  <div class="bg-slate-950 min-h-screen">
+    <div class="border-b border-slate-800/60 bg-slate-900/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-10">
+        <a href="/" class="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 text-sm transition-colors mb-5 group">
+          <svg class="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+          Back to Home
+        </a>
+        <div class="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
+              </span>
+              <h1 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Security</h1>
+            </div>
+            <p class="text-slate-400 text-sm">Your financial data is private, encrypted, and visible only to you</p>
+          </div>
+          <span class="text-slate-500 text-xs bg-slate-800/60 border border-slate-700/50 px-3 py-1.5 rounded-full">Last updated: {lastUpdated}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="lg:grid lg:grid-cols-[220px_1fr] lg:gap-14 xl:grid-cols-[240px_1fr]">
+
+        <aside class="hidden lg:block">
+          <div class="sticky top-28">
+            <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-3">Contents</p>
+            <nav class="space-y-1">
+              {sections.map((s) => (
+                <a href={`#${s.id}`} class="block text-sm text-slate-500 hover:text-emerald-400 py-1 pl-3 border-l-2 border-transparent hover:border-emerald-500 transition-all leading-snug">
+                  {s.label}
+                </a>
+              ))}
+            </nav>
+            <div class="mt-8 p-4 rounded-xl bg-amber-500/5 border border-amber-500/20">
+              <p class="text-xs text-amber-400 font-semibold mb-1">Found a security concern?</p>
+              <p class="text-xs text-slate-400 leading-relaxed">Email <a href="mailto:support@expensetracker.app" class="text-emerald-400 hover:underline">support@expensetracker.app</a> — we respond within 48 hours.</p>
+            </div>
+          </div>
+        </aside>
+
+        <article class="min-w-0 text-slate-300 leading-relaxed space-y-12">
+
+          <!-- Promise section -->
+          <section id="promise">
+            <h2 class="text-lg font-semibold text-white mb-5 pb-2 border-b border-slate-800">Our Security Promise</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+              {[
+                { icon: '🔒', title: 'Fully Encrypted',          desc: 'Bank-grade encryption on everything you store' },
+                { icon: '👁️', title: 'Zero Visibility',          desc: 'Nobody can see your financial data — not even us' },
+                { icon: '🚫', title: 'No Bank Access',           desc: 'We never connect to your accounts' },
+                { icon: '📵', title: 'No Ad Tracking',           desc: 'Zero trackers or advertising scripts' },
+                { icon: '📦', title: 'Private Exports',          desc: 'Reports generated on your own device' },
+                { icon: '🔑', title: 'Secure Login',             desc: 'Your account is protected by us' },
+                { icon: '🌐', title: 'Secure Connection',        desc: 'All data travels over an encrypted connection' },
+                { icon: '☁️', title: 'Trusted Hosting',          desc: 'Hosted on enterprise-grade secure infrastructure' },
+              ].map((h) => (
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-3 sm:p-4 flex flex-col gap-1.5">
+                  <span class="text-xl">{h.icon}</span>
+                  <p class="text-sm font-semibold text-slate-200 leading-tight">{h.title}</p>
+                  <p class="text-xs text-slate-500 leading-snug">{h.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section id="encryption">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">01</span> Encryption
+            </h2>
+            <p>Everything you store in Expense Tracker is protected with <strong class="text-white">bank-grade encryption</strong> — the same standard used by financial institutions worldwide.</p>
+            <div class="mt-5 grid sm:grid-cols-2 gap-3">
+              <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                <p class="text-sm font-semibold text-slate-200 mb-1">While stored</p>
+                <p class="text-sm text-slate-400">All your financial data is encrypted on our servers. Even if someone physically accessed the server, they could not read your data.</p>
+              </div>
+              <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-4">
+                <p class="text-sm font-semibold text-slate-200 mb-1">While travelling</p>
+                <p class="text-sm text-slate-400">All communication between your device and our servers is encrypted. No one can intercept what you send or receive.</p>
+              </div>
+            </div>
+          </section>
+
+          <section id="private-access">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">02</span> Only You Can See Your Data
+            </h2>
+            <p>This is the most important thing we want you to know:</p>
+            <div class="mt-4 bg-emerald-500/10 border border-emerald-500/25 rounded-xl px-5 py-5">
+              <p class="text-emerald-300 font-semibold text-base mb-2">Nobody at Expense Tracker can see what you enter</p>
+              <p class="text-slate-300 leading-relaxed">Your expenses, income, budgets, debts, assets, and every other piece of financial information you enter is <strong class="text-white">completely private</strong>. It is stored under your account only and is inaccessible to anyone else — including our own team.</p>
+            </div>
+            <ul class="mt-5 space-y-3">
+              {[
+                'Your financial records are isolated to your account — no one else can access them',
+                'Our team has no ability to browse or read your personal financial data',
+                'Each user\'s data is completely separated from every other user\'s data at the database level',
+              ].map((item) => (
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-4 h-4 mt-0.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section id="login">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">03</span> Account Login Security
+            </h2>
+            <ul class="space-y-3">
+              {[
+                { title: 'Email verification',         desc: 'New accounts require email confirmation — we make sure only the real owner can activate an account' },
+                { title: 'Secure password storage',    desc: 'Your password is never stored anywhere in readable form. It is converted into an unreadable code that is useless to anyone who obtains it' },
+                { title: 'Session protection',         desc: 'Your login session is tied to your device and automatically expires for security' },
+                { title: 'Secure authentication flow', desc: 'We use an industry-standard secure login process that protects you from common account hijacking attacks' },
+              ].map((item) => (
+                <li class="flex items-start gap-3 bg-slate-900/40 border border-slate-800/60 rounded-xl px-4 py-3">
+                  <svg class="w-4 h-4 mt-0.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  <div>
+                    <span class="text-sm font-semibold text-slate-200">{item.title}</span>
+                    <span class="text-sm text-slate-500"> — {item.desc}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section id="exports">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">04</span> Exports Stay on Your Device
+            </h2>
+            <p>When you export your financial reports — whether as a spreadsheet, CSV, or PDF — the file is <strong class="text-white">created entirely on your own device</strong>. It is never uploaded to our servers or passed through any third-party service. Your exported data goes directly to your downloads folder.</p>
+          </section>
+
+          <section id="no-tracking">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">05</span> Zero Tracking
+            </h2>
+            <p class="mb-4">We believe in a clean, private experience. The app does <strong class="text-white">not</strong> include:</p>
+            <ul class="space-y-3">
+              {[
+                'Advertising networks or marketing trackers',
+                'Behavioural analytics or heatmap tools',
+                'Social media pixels (Facebook, Google, TikTok, etc.)',
+                'Any scripts that monitor what you type or click inside the app',
+              ].map((item) => (
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-4 h-4 mt-0.5 text-rose-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section id="offline">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">06</span> Offline Mode
+            </h2>
+            <p>Expense Tracker works even when you have no internet connection. Any transactions you record while offline are saved temporarily in your browser — on your own device, completely private. As soon as you reconnect, they are securely synced to your account automatically.</p>
+          </section>
+
+          <section id="reporting">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">07</span> Report a Security Concern
+            </h2>
+            <div class="bg-amber-500/5 border border-amber-500/20 rounded-xl px-5 py-5">
+              <p class="text-slate-300 mb-3">If you believe you have found a security issue, please let us know privately. Do not post it publicly — contact us directly so we can investigate and fix it quickly.</p>
+              <a href="mailto:support@expensetracker.app" class="text-emerald-400 hover:text-emerald-300 font-medium transition-colors">support@expensetracker.app</a>
+              <p class="text-xs text-slate-500 mt-3">We take all reports seriously and will respond within 48 hours.</p>
+            </div>
+          </section>
+
+          <div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm">
+            <a href="/" class="inline-flex items-center gap-1.5 text-slate-400 hover:text-slate-200 transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+              Back to Home
+            </a>
+            <div class="flex items-center gap-4 text-slate-500">
+              <a href="/privacy" class="hover:text-slate-300 transition-colors">Privacy</a>
+              <a href="/terms" class="hover:text-slate-300 transition-colors">Terms</a>
+              <a href="/cookies" class="hover:text-slate-300 transition-colors">Cookies</a>
+            </div>
+          </div>
+
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</Layout>

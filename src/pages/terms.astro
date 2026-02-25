@@ -1,0 +1,249 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const lastUpdated = 'February 25, 2026';
+const sections = [
+  { id: 'acceptance',    label: '1. Acceptance of Terms' },
+  { id: 'service',       label: '2. What the App Does' },
+  { id: 'account',       label: '3. Your Account' },
+  { id: 'acceptable',    label: '4. Acceptable Use' },
+  { id: 'your-data',     label: '5. Your Data' },
+  { id: 'availability',  label: '6. Availability' },
+  { id: 'pricing',       label: '7. Pricing & Beta' },
+  { id: 'warranties',    label: '8. Disclaimer' },
+  { id: 'liability',     label: '9. Liability' },
+  { id: 'governing',     label: '10. Governing Law' },
+  { id: 'contact',       label: '11. Contact' },
+];
+---
+
+<Layout
+  title="Terms of Service — Expense Tracker"
+  description="Terms of Service for Expense Tracker. Read the conditions governing your use of our personal finance app."
+>
+  <Header />
+
+  <div class="bg-slate-950 min-h-screen">
+    <div class="border-b border-slate-800/60 bg-slate-900/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-10">
+        <a href="/" class="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 text-sm transition-colors mb-5 group">
+          <svg class="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+          Back to Home
+        </a>
+        <div class="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
+                <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+              </span>
+              <h1 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Terms of Service</h1>
+            </div>
+            <p class="text-slate-400 text-sm">The rules and conditions for using Expense Tracker</p>
+          </div>
+          <span class="text-slate-500 text-xs bg-slate-800/60 border border-slate-700/50 px-3 py-1.5 rounded-full">Last updated: {lastUpdated}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="lg:grid lg:grid-cols-[220px_1fr] lg:gap-14 xl:grid-cols-[240px_1fr]">
+
+        <aside class="hidden lg:block">
+          <div class="sticky top-28">
+            <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-3">Contents</p>
+            <nav class="space-y-1">
+              {sections.map((s) => (
+                <a href={`#${s.id}`} class="block text-sm text-slate-500 hover:text-emerald-400 py-1 pl-3 border-l-2 border-transparent hover:border-emerald-500 transition-all leading-snug">
+                  {s.label}
+                </a>
+              ))}
+            </nav>
+            <div class="mt-8 p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
+              <p class="text-xs text-slate-400 leading-relaxed">Questions? Email <a href="mailto:support@expensetracker.app" class="text-emerald-400 hover:underline">support@expensetracker.app</a></p>
+            </div>
+          </div>
+        </aside>
+
+        <article class="min-w-0 text-slate-300 leading-relaxed space-y-12">
+
+          <section id="acceptance">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">01</span> Acceptance of Terms
+            </h2>
+            <p>By signing up for or using Expense Tracker ("the App", "the Service"), you agree to these Terms of Service. If you do not agree, please do not use the App.</p>
+            <p class="mt-3">We may update these Terms from time to time. When we do, we will post the updated version here with a new date. Continuing to use the App after changes means you accept the updated Terms.</p>
+          </section>
+
+          <section id="service">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">02</span> What the App Does
+            </h2>
+            <p class="mb-4">Expense Tracker is a personal finance app that helps you:</p>
+            <div class="grid sm:grid-cols-2 gap-2">
+              {[
+                'Track daily expenses and income',
+                'Set and monitor monthly budgets',
+                'Plan your debt payoff',
+                'Track your net worth and assets',
+                'Calculate Zakat',
+                'Track money owed to you',
+                'Export financial reports',
+                'Work fully offline',
+              ].map((f) => (
+                <div class="flex items-start gap-2.5 bg-slate-900/40 border border-slate-800/60 rounded-lg px-3 py-2.5 text-sm">
+                  <svg class="w-4 h-4 mt-0.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  {f}
+                </div>
+              ))}
+            </div>
+            <div class="mt-4 bg-slate-900/60 border border-slate-700/60 rounded-xl px-5 py-4 text-sm">
+              <span class="font-semibold text-slate-200">Important:</span> <span class="text-slate-400">Expense Tracker does not connect to bank accounts, process payments, or provide regulated financial or investment advice.</span>
+            </div>
+          </section>
+
+          <section id="account">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">03</span> Your Account
+            </h2>
+            <ul class="space-y-3">
+              {[
+                'You must provide a valid email address to create an account',
+                'You are responsible for keeping your login credentials private and secure',
+                'You must be at least 13 years of age to use the App',
+                'One person per account — do not create multiple accounts to get around any limits',
+                'Do not share your account login with other people',
+              ].map((item) => (
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-4 h-4 mt-0.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section id="acceptable">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">04</span> Acceptable Use
+            </h2>
+            <p class="mb-4">You agree <strong class="text-white">not</strong> to misuse the App. This includes:</p>
+            <ul class="space-y-3">
+              {[
+                'Using the App for anything illegal or harmful',
+                'Attempting to access another user\'s account or data',
+                'Trying to copy, reverse engineer, or extract the App\'s code',
+                'Using automated tools or bots to scrape or attack the App',
+                'Uploading or transmitting malicious software',
+              ].map((item) => (
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-4 h-4 mt-0.5 text-rose-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section id="your-data">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">05</span> Your Data
+            </h2>
+            <p><strong class="text-white">You own your data.</strong> Everything you enter into Expense Tracker belongs to you. We make no claim over your financial information.</p>
+            <ul class="mt-4 space-y-3">
+              {[
+                'You can export all your data as a spreadsheet or CSV at any time — no restrictions',
+                'You can request complete deletion of your account and all associated data',
+                'We take precautions to back up data, but cannot guarantee absolute preservation in all circumstances',
+              ].map((item) => (
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-4 h-4 mt-0.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p class="mt-4 text-sm text-slate-400">See our <a href="/privacy" class="text-emerald-400 hover:text-emerald-300 underline underline-offset-2 transition-colors">Privacy Policy</a> for full details on how we protect your data.</p>
+          </section>
+
+          <section id="availability">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">06</span> Availability
+            </h2>
+            <p>We aim to keep the App available at all times, but we cannot guarantee this. Occasionally we may need to take it down for maintenance or improvements — we will try to give advance notice when possible. The App also works offline so you can continue tracking even without an internet connection.</p>
+          </section>
+
+          <section id="pricing">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">07</span> Pricing & Beta Period
+            </h2>
+            <div class="bg-emerald-500/10 border border-emerald-500/25 rounded-xl px-5 py-4 mb-5">
+              <p class="text-emerald-300 font-semibold text-sm mb-1">Currently in Beta — all features free</p>
+              <p class="text-slate-300 text-sm">All features of Expense Tracker, including those listed as "Pro", are available at no charge during the beta period.</p>
+            </div>
+            <ul class="space-y-3">
+              {[
+                'The prices shown on our website reflect our planned pricing after beta ends',
+                'We will give advance notice before any paid plan goes live',
+                'Users who join during beta will receive preferential pricing or a grace period when we transition',
+              ].map((item) => (
+                <li class="flex items-start gap-2.5">
+                  <svg class="w-4 h-4 mt-0.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section id="warranties">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">08</span> Disclaimer
+            </h2>
+            <p>The App is provided as-is. While we work hard to keep it accurate and reliable, we cannot guarantee it will always be error-free or available without interruption.</p>
+            <ul class="mt-4 space-y-2 text-sm text-slate-400">
+              <li class="flex items-start gap-2"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 shrink-0"></span>Calculations in the App (including Zakat estimates) are for informational purposes and are not a substitute for professional financial or religious advice</li>
+              <li class="flex items-start gap-2"><span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-600 shrink-0"></span>We are not a bank, financial advisor, or regulated financial service</li>
+            </ul>
+          </section>
+
+          <section id="liability">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">09</span> Limitation of Liability
+            </h2>
+            <p>To the fullest extent permitted by law, we are not liable for any losses or damages that arise from your use of the App — including data loss, financial decisions you make using the App, or temporary unavailability of the service.</p>
+          </section>
+
+          <section id="governing">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">10</span> Governing Law
+            </h2>
+            <p>These Terms are governed by the laws of the jurisdiction where we operate. Any disputes will be handled in the appropriate courts of that jurisdiction.</p>
+          </section>
+
+          <section id="contact">
+            <h2 class="text-lg font-semibold text-white mb-4 flex items-center gap-2 pb-2 border-b border-slate-800">
+              <span class="text-emerald-400 text-sm font-mono">11</span> Contact
+            </h2>
+            <div class="bg-slate-900/60 border border-slate-700/60 rounded-xl px-5 py-5">
+              <p class="text-slate-300 mb-1">Questions about these Terms?</p>
+              <a href="mailto:support@expensetracker.app" class="text-emerald-400 hover:text-emerald-300 font-medium transition-colors">support@expensetracker.app</a>
+            </div>
+          </section>
+
+          <div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm">
+            <a href="/" class="inline-flex items-center gap-1.5 text-slate-400 hover:text-slate-200 transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+              Back to Home
+            </a>
+            <div class="flex items-center gap-4 text-slate-500">
+              <a href="/privacy" class="hover:text-slate-300 transition-colors">Privacy</a>
+              <a href="/security" class="hover:text-slate-300 transition-colors">Security</a>
+              <a href="/cookies" class="hover:text-slate-300 transition-colors">Cookies</a>
+            </div>
+          </div>
+
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <Footer />
+</Layout>
